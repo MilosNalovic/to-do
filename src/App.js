@@ -9,14 +9,21 @@ function App() {
       return [...prevTasks, { name: task, id: Math.random().toString() }];
     });
   };
-  const tasksListJsx = <TaskList tasks={tasksList} />;
+  const removeTaskHandler = (id) => {
+    setTasksList((prevTasks) => {
+      tasksList.filter((task) => task.id !== id);
+    });
+  };
+  const tasksListJsx = (
+    <TaskList tasks={tasksList} removeTask={removeTaskHandler} />
+  );
   return (
     <Fragment>
       <AddTask onAddTask={addTaskHandler} />
       {tasksList && tasksList.length ? (
         tasksListJsx
       ) : (
-        <p className={styles.conditionalP}>"No tasks ATM :("</p>
+        <p className={styles.conditionalP}>No tasks ATM :(</p>
       )}
     </Fragment>
   );
