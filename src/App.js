@@ -1,6 +1,7 @@
 import { useState, Fragment } from "react";
 import AddTask from "./Components/Tasks/AddTask";
 import TaskList from "./Components/Tasks/TasksList";
+import styles from "./App.module.css";
 function App() {
   const [tasksList, setTasksList] = useState([]);
   const addTaskHandler = (task) => {
@@ -8,10 +9,15 @@ function App() {
       return [...prevTasks, { name: task, id: Math.random().toString() }];
     });
   };
+  const tasksListJsx = <TaskList tasks={tasksList} />;
   return (
     <Fragment>
       <AddTask onAddTask={addTaskHandler} />
-      <TaskList tasks={tasksList} />
+      {tasksList && tasksList.length ? (
+        tasksListJsx
+      ) : (
+        <p className={styles.conditionalP}>"No tasks ATM :("</p>
+      )}
     </Fragment>
   );
 }

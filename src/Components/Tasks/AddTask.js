@@ -6,6 +6,7 @@ const AddTask = (props) => {
   const [task, setTask] = useState([]);
   const addTaskHander = (event) => {
     event.preventDefault();
+    if (task.length === 0) return;
     props.onAddTask(task);
     setTask("");
   };
