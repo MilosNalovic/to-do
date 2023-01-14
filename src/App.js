@@ -10,8 +10,8 @@ function App() {
     });
   };
   const removeTaskHandler = (id) => {
-    setTasksList((prevTasks) => {
-      tasksList.filter((task) => task.id !== id);
+    setTasksList(() => {
+      return tasksList.filter((task) => task.id !== id);
     });
   };
   const tasksListJsx = (
