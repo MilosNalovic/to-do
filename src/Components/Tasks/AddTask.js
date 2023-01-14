@@ -6,7 +6,8 @@ const AddTask = (props) => {
   const [task, setTask] = useState([]);
   const addTaskHander = (event) => {
     event.preventDefault();
-    console.log(task);
+    props.onAddTask(task);
+    setTask("");
   };
   const taskInput = (event) => {
     setTask(event.target.value);
@@ -15,7 +16,7 @@ const AddTask = (props) => {
     <Wrapper className={styles.formWrapper}>
       <p>To do manager :)</p>
       <form className={styles.form}>
-        <input onChange={taskInput} type="text"></input>
+        <input onChange={taskInput} type="text" value={task}></input>
         <Button type="submit" onClick={addTaskHander}>
           Add Task
         </Button>
